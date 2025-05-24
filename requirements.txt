@@ -1,0 +1,6 @@
+scikit-learn
+gradio
+scikit-learn
+pandas
+numpy
+geopy
