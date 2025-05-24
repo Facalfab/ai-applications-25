@@ -15,7 +15,11 @@ The model was trained on data from professional and youth players, using manuall
 | Source          | Description                          |
 |-----------------|--------------------------------------|
 | Kaggle Dataset  | Player stats from professional leagues |
-| Wyscout Data    | Swiss players from Super League and youth levels (U17, U19, U21) |
+| Wyscout Data    | Swiss players from Super League and youth levels (U17, U19, U21), Manually exported from Wyscout (Excel), processed with Python | 
+
+
+These datasets were cleaned, standardized, and merged. Youth players were labeled as `is_pro = 0`, professionals as `is_pro = 1`. The Kaggle data was split into upper/lower halves by performance and balanced accordingly.
+
 
 ### Features
 
@@ -97,4 +101,14 @@ prediction = 1 if probability > 0.8 else 0
 - Some labels were synthetically assigned due to lack of real youth performance data.
 - The 300-point scale for activity score is a heuristic.
 - All predictions are based solely on performance metrics and do not consider external factors (e.g., injuries, market value).
+
+---
+
+## Results
+
+The model performs very well on both training and test data, with a test accuracy of 99.04%. However, since the train accuracy is 100%, there remains a slight risk of overfitting. Further data would be needed to test the robustness of the model in real-world applications.
+
+More diverse, realistic, and organically labeled non-professional data could help improve future model performance and reduce any risk of synthetic bias.
+
+---
 
