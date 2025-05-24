@@ -7,7 +7,7 @@ The model was trained on data from professional and youth players, using manuall
 ## App
 | Platform        | Link |
 |----------------|------|
-| Hugging Face Space | [Pro Player Prediction App](https://huggingface.co/spaces/YOUR_USERNAME/pro-player-prediction) |
+| Hugging Face Space | [Pro Player Prediction App](https://huggingface.co/spaces/fabfacal/mep_ai_applications_25) |
 | Code         | [GitHub Repository](https://github.com/Facalfab/ai-applications-25/) |
 
 ## Data Sources and Features
