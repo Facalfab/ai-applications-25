@@ -1,0 +1,54 @@
+import pandas as pd
+import os
+from glob import glob
+
+# Pfad zum Ordner mit den Kaggle-Dateien (z. B. heruntergeladen)
+ORDNER = "/Users/fabianfacalbiemmi/Desktop/AI_Applications/Pro_kagle"
+AUSGABE_DATEI = "kaggle_players_combined.csv"
+
+# Spaltenmapping: Kaggle → Zielstruktur wie bei wyscout
+SPALTEN_MAPPING = {
+    "Player": "name",
+    "Min": "minutes",
+    "Gls": "goals",
+    "Ast": "assists",
+    "PasTotCmp": "passes_success",
+    "PasTotAtt": "passes_total",
+    "SoT": "shots_on_target",
+    "TklWon": "duels_won",  # grobe Annäherung
+    "Tkl": "duels_total",   # grobe Annäherung
+    "Dispossessed": "ball_losses",  # nur wenn vorhanden
+    "Recov": "recoveries_high"
+}
+
+# Liste zur Speicherung der vereinheitlichten Spieler-Daten
+alle_spieler = []
+
+# Alle CSVs im Ordner durchgehen
+for dateipfad in glob(os.path.join(ORDNER, "*.csv")):
+    try:
+        df = pd.read_csv(dateipfad, sep=";", encoding="ISO-8859-1", engine="python")  # falls nötig
+
+        # Nur relevante Spalten behalten und umbenennen
+        neue_spalten = {}
+        for orig_spalte, ziel_spalte in SPALTEN_MAPPING.items():
+            if orig_spalte in df.columns:
+                neue_spalten[orig_spalte] = ziel_spalte
+
+        df_auszug = df[list(neue_spalten.keys())].rename(columns=neue_spalten)
+
+        # Rundung der numerischen Werte auf 2 Nachkommastellen
+        for col in df_auszug.select_dtypes(include="number").columns:
+            df_auszug[col] = df_auszug[col].round(2)
+
+        alle_spieler.append(df_auszug)
+
+    except Exception as e:
+        print(f"❌ Fehler bei Datei {dateipfad}: {e}")
+
+# Kombiniere alle zu einem DataFrame
+df_alle_profis = pd.concat(alle_spieler, ignore_index=True)
+
+# Speichere als CSV
+df_alle_profis.to_csv(AUSGABE_DATEI, index=False)
+print(f"✅ Datei gespeichert: {AUSGABE_DATEI}")
