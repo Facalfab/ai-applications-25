@@ -60,11 +60,11 @@ for dateipfad in glob(os.path.join(ORDNER, "*.csv")):
         alle_spieler.append(df_auszug)
 
     except Exception as e:
-        print(f"❌ Fehler bei Datei {dateipfad}: {e}")
+        print(f"Fehler bei Datei {dateipfad}: {e}")
 
 # Kombiniere alle zu einem DataFrame
 df_alle_profis = pd.concat(alle_spieler, ignore_index=True)
 
 # Speichere als CSV
 df_alle_profis.to_csv(AUSGABE_DATEI, index=False)
-print(f"✅ Datei gespeichert: {AUSGABE_DATEI}")
+print(f"Datei gespeichert: {AUSGABE_DATEI}")

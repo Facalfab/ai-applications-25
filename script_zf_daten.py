@@ -78,7 +78,7 @@ for dateipfad in glob(os.path.join(ORDNER, "*.xlsx")):
         alle_spieler.append(spielerdaten)
 
     except Exception as e:
-        print(f"❌ Fehler bei Datei {dateipfad}: {e}")
+        print(f"Fehler bei Datei {dateipfad}: {e}")
 
 # DataFrame erstellen
 df_alle_spieler = pd.DataFrame(alle_spieler)
@@ -89,4 +89,4 @@ for col in df_alle_spieler.select_dtypes(include="number").columns:
 
 # Speichern
 df_alle_spieler.to_csv(AUSGABE_DATEI, index=False)
-print(f"✅ Datei gespeichert: {AUSGABE_DATEI}")
+print(f"Datei gespeichert: {AUSGABE_DATEI}")
