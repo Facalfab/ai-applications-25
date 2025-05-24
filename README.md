@@ -86,8 +86,14 @@ To ensure higher certainty, we manually set the threshold to:
 
 ```python
 prediction = 1 if probability > 0.8 else 0
+```
+---
+### References
+![image](https://github.com/user-attachments/assets/4b19fbd6-ec1e-4743-81f4-a6e0efe0414f)
+![image](https://github.com/user-attachments/assets/8664158b-cde8-4b88-906f-53f26119000a)
 
-## 7. Limitations
+
+## Limitations
 - Some labels were synthetically assigned due to lack of real youth performance data.
 - The 300-point scale for activity score is a heuristic.
 - All predictions are based solely on performance metrics and do not consider external factors (e.g., injuries, market value).
